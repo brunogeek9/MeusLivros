@@ -37,14 +37,15 @@ public class CadastroLivroActivity extends AppCompatActivity {
                 );
                 db.save(l);
                 Log.i("teste",l.toString());
-                Snackbar sb = Snackbar.make( (View) view.getParent(),R.string.txt_snack,Snackbar.LENGTH_LONG)
+                /*Snackbar sb = Snackbar.make( (View) view.getParent(),R.string.txt_snack,Snackbar.LENGTH_LONG)
                         .setAction(R.string.canc_snack, new View.OnClickListener() {
                             @Override
                             public void onClick(View view) {
                                 Toast.makeText(CadastroLivroActivity.this,"cancelou",Toast.LENGTH_SHORT).show();
                             }
-                        });
-                sb.show();
+                        });*/
+                //sb.show();
+                setResult(RESULT_OK);
                 finish();
             }
         });
@@ -53,7 +54,7 @@ public class CadastroLivroActivity extends AppCompatActivity {
         btn_canc.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent();
+                setResult(RESULT_CANCELED);
                 finish();
             }
         });
