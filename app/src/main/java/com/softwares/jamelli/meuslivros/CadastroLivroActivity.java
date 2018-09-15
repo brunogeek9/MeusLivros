@@ -54,7 +54,6 @@ public class CadastroLivroActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent();
-                setResult(RESULT_CANCELED,intent);
                 finish();
             }
         });

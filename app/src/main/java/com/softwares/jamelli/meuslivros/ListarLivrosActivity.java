@@ -15,6 +15,10 @@ import java.util.List;
 public class ListarLivrosActivity extends AppCompatActivity {
     private int livroAtual;
     private List<Livro> livros;
+    private TextView tv_tit;
+    private TextView tv_aut;
+    private TextView tv_ano;
+    private TextView tv_nota;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -22,41 +26,29 @@ public class ListarLivrosActivity extends AppCompatActivity {
         BancoHelper db = new BancoHelper(this);
         final Button btn_prox = findViewById(R.id.btn_prox);
         final Button btn_ant = findViewById(R.id.btn_ant);
-        final TextView tv_tit = findViewById(R.id.tv1);
-        final TextView tv_aut = findViewById(R.id.tv2);
-        final TextView tv_ano = findViewById(R.id.tv3);
-        final TextView tv_nota = findViewById(R.id.tv4);
+        tv_tit = findViewById(R.id.tv1);
+        tv_aut = findViewById(R.id.tv2);
+        tv_ano = findViewById(R.id.tv3);
+        tv_nota = findViewById(R.id.tv4);
 
         livros = db.findAll();
         livroAtual = 0;
         for (Livro l: livros) {
             Log.i("teste", l.toString());
         }
-        tv_tit.setText(livros.get(livroAtual).getTitulo());
-        tv_aut.setText(livros.get(livroAtual).getAutor());
-        tv_ano.setText(String.valueOf(livros.get(livroAtual).getAno()));
-        tv_nota.setText(String.valueOf(livros.get(livroAtual).getNota()));
+        alterarTextos();
         btn_ant.setEnabled(false);
         btn_ant.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                /*if(livroAtual == 1){
-                    btn_ant.setEnabled(false);
-                    livroAtual--;
-                }else{
-                    btn_ant.setEnabled(true);
-                    livroAtual--;
-                }*/
+
                 if(livroAtual < 1){
                     btn_ant.setEnabled(false);
                 }else{
                     btn_prox.setEnabled(true);
                     btn_ant.setEnabled(true);
                     livroAtual--;
-                    tv_tit.setText(livros.get(livroAtual).getTitulo());
-                    tv_aut.setText(livros.get(livroAtual).getAutor());
-                    tv_ano.setText(String.valueOf(livros.get(livroAtual).getAno()));
-                    tv_nota.setText(String.valueOf(livros.get(livroAtual).getNota()));
+                    alterarTextos();
                 }
             }
         });
@@ -64,28 +56,24 @@ public class ListarLivrosActivity extends AppCompatActivity {
         btn_prox.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                /*if(livroAtual == livros.size()-1){
-                    btn_prox.setEnabled(false);
-                    livroAtual++;
-                }else{
-                    btn_prox.setEnabled(true);
-                    livroAtual++;
-                }*/
+
                 if(livroAtual >= livros.size()-1){
                     btn_prox.setEnabled(false);
                 }else{
                     btn_prox.setEnabled(true);
                     btn_ant.setEnabled(true);
                     livroAtual++;
-                    tv_tit.setText(livros.get(livroAtual).getTitulo());
-                    tv_aut.setText(livros.get(livroAtual).getAutor());
-                    tv_ano.setText(String.valueOf(livros.get(livroAtual).getAno()));
-                    tv_nota.setText(String.valueOf(livros.get(livroAtual).getNota()));
+                    alterarTextos();
                 }
 
             }
         });
 
     }
-
+    public void alterarTextos(){
+        tv_tit.setText(livros.get(livroAtual).getTitulo());
+        tv_aut.setText(livros.get(livroAtual).getAutor());
+        tv_ano.setText(String.valueOf(livros.get(livroAtual).getAno()));
+        tv_nota.setText(String.valueOf(livros.get(livroAtual).getNota()));
+    }
 }

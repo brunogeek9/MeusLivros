@@ -1,11 +1,14 @@
 package com.softwares.jamelli.meuslivros;
 
 import android.content.Intent;
+import android.support.annotation.Nullable;
+import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.Toast;
 
 import com.softwares.jamelli.meuslivros.database.BancoHelper;
 
@@ -26,6 +29,7 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View view) {
                 Intent i = new Intent(getApplicationContext(),CadastroLivroActivity.class);
                 startActivity(i);
+
             }
         });
         btn_listar.setOnClickListener(new View.OnClickListener() {
@@ -45,4 +49,5 @@ public class MainActivity extends AppCompatActivity {
 
 
     }
+
 }
